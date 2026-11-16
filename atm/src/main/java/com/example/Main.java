@@ -1,6 +1,7 @@
 package com.example;
 
 
+import com.example.Account;
 
 public class Main {
 
@@ -14,9 +15,9 @@ public class Main {
         System.out.println("===========================");
     }
 
-
     public static void main(String[] args) {
         
+        Account account = new Account();   
         printMenu();
 
 

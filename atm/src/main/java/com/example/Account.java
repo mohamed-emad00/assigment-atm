@@ -47,7 +47,13 @@ public class Account implements AccountInterface{
         return this.balanceCurrency;
     }
     public Boolean checkPIN(final String PINToCheck){
-        return PINToCheck.equals(this.PIN);
+
+        if(PINToCheck.equals(this.PIN)){
+            return true;
+        }else{
+            System.out.println("Invalid PIN");;
+            return false;
+        }
     }
     
     public int getNoDeposit(){

@@ -37,7 +37,9 @@ public class Account implements AccountInterface{
     public String getUsername(){
         return this.username;
     }
-
+    public String getAccountStatus(){
+        return this.accountStatus;
+    }
     public BigDecimal getBalance(){
         return this.balance;
     } 
@@ -72,7 +74,7 @@ public class Account implements AccountInterface{
         if( amount == null|| amount.compareTo(new BigDecimal("0.0")) <= 0){
             throw new IllegalArgumentException("the amount must be greater than zero");
         }
-        this.balance.add(amount);
+        this.balance = this.balance.add(amount);
         updateStatus();
         this.numOfDeposit++;
         return true;
@@ -84,7 +86,7 @@ public class Account implements AccountInterface{
         if( amount == null || amount.compareTo(this.balance) > 0 ){
             throw new IllegalArgumentException("amount to withdraw must be <= less than or equal: "+this.balance + " "+ this.balanceCurrency);
         }
-        this.balance.subtract(amount);
+        this.balance = this.balance.subtract(amount);
         updateStatus();
         this.numOfWithdraw++;
         return true;

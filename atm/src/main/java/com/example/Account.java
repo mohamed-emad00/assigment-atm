@@ -48,7 +48,7 @@ public class Account implements AccountInterface{
     }
     public Boolean checkPIN(final String PINToCheck){
 
-        if(PINToCheck.equals(this.PIN)){
+        if(PINToCheck != null && PINToCheck.equals(this.PIN)){
             return true;
         }else{
             System.out.println("Invalid PIN");;
@@ -89,7 +89,7 @@ public class Account implements AccountInterface{
 
     @Override
     public synchronized Boolean withdraw(final BigDecimal amount) {
-        if( amount == null || amount.compareTo(this.balance) > 0 ){
+        if( amount == null || this.balance.compareTo(amount) > 0 ){
             throw new IllegalArgumentException("amount to withdraw must be <= less than or equal: "+this.balance + " "+ this.balanceCurrency);
         }
         this.balance = this.balance.subtract(amount);

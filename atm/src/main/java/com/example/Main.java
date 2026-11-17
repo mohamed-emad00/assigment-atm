@@ -31,13 +31,17 @@ public class Main {
 
         byte option = 0;
         do{
-            System.out.println("Initial balance: "+ account.getBalance() + " " + account.getCurrency());
+            System.out.println("Your balance: "+ account.getBalance() + " " + account.getCurrency());
             printMenu();
             System.out.println("Enter the option: ");
             option = input.nextByte();
             switch(option){
                 case 1:
-                    System.out.println("your current balance is: " + account.getBalance() + " "+account.getCurrency());
+                    if(account.getBalance().compareTo(new BigDecimal("0")) == 0){
+                        System.out.println("Warning: Your account is empty");
+                    }else {
+                        System.out.println("your current balance is: " + account.getBalance() + " " + account.getCurrency());
+                    }
                     break;
                 case 2:
                     System.out.println("Enter the amount to deposit: ");
@@ -45,7 +49,12 @@ public class Main {
                     break;
                 case 3:
                     System.out.println("Enter the amount to withdraw: ");
-                    account.withdraw(input.nextBigDecimal());
+                    BigDecimal amount = input.nextBigDecimal();
+                    if (amount.compareTo(new BigDecimal("0")) == 0) {
+                        System.out.println("Transaction cancelled");
+                    }else {
+                        account.withdraw(amount);
+                    }
                     break;
                 case 4:
                     System.out.println("the account status is: "+account.getAccountStatus());
